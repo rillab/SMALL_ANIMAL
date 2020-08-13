@@ -1,0 +1,6 @@
+numpy
+tensorflow==1.14.0
+skimage
+opencv-python
+#pandas
+#matplotlib
