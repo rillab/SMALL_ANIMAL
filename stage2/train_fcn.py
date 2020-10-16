@@ -33,10 +33,12 @@ imp.reload(ld)
 
 #Directory settings
 logdir = '../r20/info'
-result_dir = '../r20/save/valtest'
+result_dir = '../r20/save'
 train_image_dir = '../train_img'
 train_mask_dir = '../train_mask_r20'
-#val_mask_dir = "../val_r20/val3"
+val_image_dir = '../val_img'
+val_mask_dir = '../val_mask_r20'
+
 
 model_loc = ""
 testing_dir = ""
@@ -51,13 +53,18 @@ imageType=3 # imageType for RGB image
 ins=256 # input image size for NN, this should match the image size, because we are not doing cropping.
 res = ins # in noCrop, we should set 'res' equals to 'ins'
 
-total_img, total_label, names = ld.load_data_noCrop_new(img_dir = train_image_dir, mask_dir = train_mask_dir)
+total_img, total_label, _ = ld.load_data_noCrop_new(img_dir = train_image_dir, mask_dir = train_mask_dir)
 train_img = total_img[2000:8000]
 train_label = total_label[2000:8000]
 train_num_image = len(train_img)
 
-val_img = total_img[0:2000]
-val_label = total_label[0:2000]
+val_img, val_label, _ = ld.load_data_noCrop_new(img_dir = val_image_dir, mask_dir = val_mask_dir)
+val_num_image = len(val_img)
+
+epoch = 50
+batch_num = int(train_num_image/batch_size)
+model_num = int(batch_num/3)
+total_batch_num = batch_num * epoch
 
 
 # # Create the model
@@ -177,9 +184,10 @@ def model_apply_threeClass_noCrop(sess,result,input_img,phase,val_image,val_labe
     error = error / nrotate
     return val_out_rotate[0,:,:,:], error
 
-train_loss = a = np.array([])
+train_loss = np.array([])
 val_loss = np.array([])
-for i in range(37500+1):
+training_time = np.array([])
+for i in range(total_batch_num+1):
     train_img_batch, train_label_batch = ld.get_batch_noCrop_fast_gaussian(train_img,train_label,
                 batch_size=batch_size, ins=ins, imageType=imageType, num_images=train_num_image)
 
@@ -189,29 +197,32 @@ for i in range(37500+1):
     train_loss_batch_mean = train_loss_batch/batch_size
     train_loss = np.append(train_loss, train_loss_batch_mean)
 
-    if (i % 250 == 0):
+    if (i % model_num == 0):
         path = result_dir + '/' + str(i)
         os.makedirs(path)
         checkpoint_name = os.path.join(path, str(i) + '.ckpt')
         print('Saving model: ' + checkpoint_name)
         saver.save(sess, checkpoint_name)
 
-    if (i % 750 == 0):
-        val_loss_2000_mean = 0
-        for j in range(2000):
-            val_2000_label = val_label[j]
-            val_2000_image = val_img[j]
-            val_2000_image = val_2000_image/255
-            val_2000_label = val_2000_label/255
-            _ , val_1_loss = model_apply_threeClass_noCrop(sess,result,input_img,phase,val_2000_image,val_2000_label,ins)
-            val_loss_2000_mean = val_loss_2000_mean + val_1_loss
+    if (i % batch_num == 0):
+        val_loss_mean = 0
+        for j in range(val_num_image):
+            val_single_label = val_label[j]
+            val_single_image = val_img[j]
+            val_single_image = val_single_image/255
+            val_single_label = val_single_label/255
+            _ , val_single_loss = model_apply_threeClass_noCrop(sess,result,input_img,phase,val_single_image,val_single_label,ins)
+            val_loss_mean = val_loss_mean + val_single_loss
 
-        val_loss_2000_mean =  val_loss_2000_mean/2000
-        val_loss = np.append(val_loss, val_loss_2000_mean)
-        print(i,train_loss_batch_mean, val_loss_2000_mean)
+        val_loss_mean =  val_loss_mean/val_num_image
+        val_loss = np.append(val_loss, val_loss_mean)
+        print(i,train_loss_batch_mean, val_loss_mean)
+        training_time = np.append(training_time, ((time.time() - start_time)/60))
 
         train_loss_dir = result_dir + '/iter' + str(i) + '_train_loss'
         val_loss_dir = result_dir + '/iter' + str(i) + '_val_loss'
+        time_dir = result_dir + '/iter' + str(i) + '_time'
         np.save(train_loss_dir, train_loss)
         np.save(val_loss_dir, val_loss)
-print("--- %s seconds ---" %(time.time() - start_time))
+        np.save(time_dir, training_time)
+print("--- total %s minute ---" %((time.time() - start_time)/60))
