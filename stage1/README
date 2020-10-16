@@ -1,13 +1,13 @@
+train_box_coordinates.txt contains the training box coordinates.
+
 For training:
 python train_frcnn.py -o simple -p input.txt
-
-input.txt contains the training box coordinates.
 
 For testing:
 python test_frcnn.py -p /path/to/test_images/
 
 Result images in result_images folder
 
-Result coordinates in box_coordinates_r.txt
+Result coordinates in result_box_coordinates_r.txt
 
 Modified coordinates as a square box in stage2/box_coordinates_s.txt
