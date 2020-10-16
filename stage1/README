@@ -1,9 +1,13 @@
 For training:
 python train_frcnn.py -o simple -p input.txt
 
+input.txt contains the training coordinates.
+
 For testing:
 python test_frcnn.py -p /path/to/test_images/
 
 Result images in result_images folder
 
-Original result of rectangle coordinates in coordinates_r.txt
+Result coordinates in coordinates_r.txt
+
+Modified coordinates as a square box in stage2/coordinates_s.txt
