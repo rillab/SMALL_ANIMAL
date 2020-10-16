@@ -3,3 +3,9 @@ python train_frcnn.py -o simple -p input.txt
 
 For testing:
 python test_frcnn.py -p /path/to/test_images/
+
+Result images in result_images folder
+
+Original result of regtangle coordinates in coordinates_r.txt
+
+Modified square coordinates in coordinates_s.txt
