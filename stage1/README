@@ -1,7 +1,7 @@
 For training:
 python train_frcnn.py -o simple -p input.txt
 
-input.txt contains the training coordinates.
+input.txt contains the training box coordinates.
 
 For testing:
 python test_frcnn.py -p /path/to/test_images/
