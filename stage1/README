@@ -6,4 +6,4 @@ python test_frcnn.py -p /path/to/test_images/
 
 Result images in result_images folder
 
-Original result of regtangle coordinates in coordinates_r.txt
+Original result of rectangle coordinates in coordinates_r.txt
