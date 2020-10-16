@@ -8,6 +8,6 @@ python test_frcnn.py -p /path/to/test_images/
 
 Result images in result_images folder
 
-Result coordinates in coordinates_r.txt
+Result coordinates in box_coordinates_r.txt
 
-Modified coordinates as a square box in stage2/coordinates_s.txt
+Modified coordinates as a square box in stage2/box_coordinates_s.txt
