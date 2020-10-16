@@ -1,1 +1,5 @@
+For training:
+python train_frcnn.py -o simple -p input.txt
 
+For testing:
+python test_frcnn.py -p /path/to/test_images/
