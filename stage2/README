@@ -6,12 +6,10 @@ data_label_aug.ipynb is for data augmentation and gaussian label generating.
 
 resize.ipynb is for image resizing.
 
-For training:
-python train_fcn.py
+For training: python train_fcn.py
 
-For testing:
-python test_fcn.py
+For testing: python test_fcn.py
 
-Result images are in result_images folder.
+result_images folder contains result images.
 
-ResultAnalysis.ipynb is for finding the bregma and lambda, calculating the error, and analyze the error.
+resultAnalysis.ipynb is for finding the bregma and lambda, calculating the error, and analyze the error.
