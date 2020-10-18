@@ -1,6 +1,10 @@
-box_coordinates_s.txt obtained from stage 1
+box_coordinates_s.txt obtained from stage 1.
 
-bregma_lambda_coodinates.txt contains the ground truth coordinates
+bregma_lambda_coodinates.txt contains the ground truth coordinates.
+
+data_label_aug.ipynb is for data augmentation and gaussian label generating.
+
+resize.ipynb is for image resizing.
 
 For training:
 python train_fcn.py
@@ -8,4 +12,6 @@ python train_fcn.py
 For testing:
 python test_fcn.py
 
-Result images in result_images folder
+Result images are in result_images folder.
+
+ResultAnalysis.ipynb is for finding the bregma and lambda, calculating the error, and analyze the error.
