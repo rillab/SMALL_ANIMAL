@@ -1,1 +1,11 @@
+box_coordinates_s.txt obtained from stage 1
 
+bregma_lambda_coodinates.txt contains the ground truth coordinates
+
+For training:
+python train_fcn.py
+
+For testing:
+python test_fcn.py
+
+Result images in result_images folder
