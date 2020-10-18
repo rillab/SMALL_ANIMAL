@@ -2,6 +2,7 @@
 Automated Detection of Bregma and Lambda Locations in Rodent Skull Anatomy Images
 
 Stage 1:
+
 train_box_coordinates.txt contains the training box coordinates.
 
 For training: python train_frcnn.py -o simple -p input.txt
@@ -15,6 +16,7 @@ Result coordinates in result_box_coordinates.txt
 Modified coordinates as a square box in stage2/box_coordinates_s.txt
 
 Stage 2:
+
 box_coordinates_s.txt obtained from stage 1.
 
 bregma_lambda_coodinates.txt contains the ground truth coordinates.
