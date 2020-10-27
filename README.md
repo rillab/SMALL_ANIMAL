@@ -5,13 +5,13 @@ Currently, injection sites of probes, cannula, and optic fibers in stereotactic 
 
 ### Files/folders:
 
-* `./stage1/`::folder for the training and result in stage one.
+* `./stage1/`: folder for the training and result in stage one.
 train_box_coordinates.txt contains the training box coordinates.
 Result images in * `./stage1/result_images`
 Result coordinates in result_box_coordinates.txt
 Modified coordinates as a square box in * `.stage2/box_coordinates_s.txt`
 
-* `./stage2/`:folder for the training and result in stage two.
+* `./stage2/`: folder for the training and result in stage two.
 box_coordinates_s.txt obtained from stage 1.
 bregma_lambda_coodinates.txt contains the ground truth coordinates.
 data_label_aug.ipynb is for data augmentation and gaussian label generating.
