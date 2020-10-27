@@ -7,7 +7,7 @@ Currently, injection sites of probes, cannula, and optic fibers in stereotactic 
 
 * `./stage1/`: folder for the training and result in stage one.
 train_box_coordinates.txt contains the training box coordinates.
-Result images in * `./stage1/result_images`
+Result images in `./stage1/result_images`
 Result coordinates in result_box_coordinates.txt
 Modified coordinates as a square box in * `.stage2/box_coordinates_s.txt`
 
