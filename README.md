@@ -21,7 +21,7 @@ Modified coordinates as a square box in `.stage2/box_coordinates_s.txt`.
 
 ### How to use:
 1. stage 1
-- For training: run: `$ python train_frcnn.py -o simple -p input.txt` 
+- For training: run: `$ python train_frcnn.py -o simple -p train_box_coordinates.txt` 
 - For testing: run: `$ python test_frcnn.py -p /path/to/test_images/` 
 
 2. stage 2
