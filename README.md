@@ -19,6 +19,8 @@ Modified coordinates as a square box in `.stage2/box_coordinates_s.txt`.
 `./stage2/result_images` folder contains result images.
 `resultAnalysis.ipynb` is for finding the bregma and lambda, calculating the error, and analyze the error.
 
+Dependences: Python, h5py, Keras==2.0.3, numpy, opencv-python, sklearn, tensorflow==1.14.0, skimage
+
 ### How to use:
 1. stage 1
 - For training: run: `$ python train_frcnn.py -o simple -p input.txt` 
